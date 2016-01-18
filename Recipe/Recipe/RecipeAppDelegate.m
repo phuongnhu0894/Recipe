@@ -7,13 +7,61 @@
 //
 
 #import "RecipeAppDelegate.h"
+#import <sqlite3.h>
 
 @implementation RecipeAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // Function called to create a copy of the database if needed.
+    // display launch screen in 1 sec
+    [NSThread sleepForTimeInterval:1.0];
+    //set background image
+    [self.window setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"common_bg"]]];
+    UIImage *navigationImage = [UIImage imageNamed:@"navbar_bg"];
+    [[UINavigationBar appearance] setBackgroundImage:navigationImage forBarMetrics:UIBarMetricsDefault];
+    
+    //set bar button image
+    UIImage *backImage =[[UIImage imageNamed:@"button_back"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    UIImage *barButtonImage = [[UIImage imageNamed:@"button_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    [[UIBarButtonItem appearance] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], UITextAttributeTextColor,
+                                                           [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],UITextAttributeTextShadowColor,
+                                                           [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
+                                                           UITextAttributeTextShadowOffset,
+                                                           [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0], UITextAttributeFont, nil]];
+
+    
+    [self createCopyOfDatabaseIfNeeded];
+    
     return YES;
+}
+
+#pragma mark - Defined Functions
+
+// Function to Create a writable copy of the bundled default database in the application Documents directory.
+- (void)createCopyOfDatabaseIfNeeded {
+    // First, test for existence.
+    BOOL success;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    // Database filename can have extension db/sqlite.
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *appDBPath = [documentsDirectory stringByAppendingPathComponent:@"Recipe.sqlite"];
+    
+    success = [fileManager fileExistsAtPath:appDBPath];
+    if (success) {
+        return;
+    }
+    // The writable database does not exist, so copy the default to the appropriate location.
+    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Recipe.sqlite"];
+    success = [fileManager copyItemAtPath:defaultDBPath toPath:appDBPath error:&error];
+    NSAssert(success, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

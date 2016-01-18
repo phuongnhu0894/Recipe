@@ -2,7 +2,7 @@
 //  RecipeTableViewCell.m
 //  Recipe
 //
-//  Created by Phuong on 1/8/16.
+//  Created by Phuong on 1/15/16.
 //  Copyright © 2016 Appcoda. All rights reserved.
 //
 
@@ -10,13 +10,9 @@
 
 @implementation RecipeTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+- (void)awakeFromNib {
+    // Initialization code
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
