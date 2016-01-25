@@ -2,11 +2,16 @@
 //  CustomTableAppDelegate.m
 //  CustomTable
 //
-//  Created by Simon on 7/12/13.
-//  Copyright (c) 2013 Appcoda. All rights reserved.
+//  Created by Phuong on 1/15/16.
+//  Copyright © 2016 Appcoda. All rights reserved.
 //
 
 #import "RecipeAppDelegate.h"
+#import "DEMOLeftMenuViewController.h"
+#import "RecipeTableViewController.h"
+#import "RESideMenu.h"
+#import "RECommonFunctions.h"
+#import "UIViewController+RESideMenu.h"
 #import <sqlite3.h>
 
 @implementation RecipeAppDelegate
@@ -15,7 +20,7 @@
 {
     // Function called to create a copy of the database if needed.
     // display launch screen in 1 sec
-    [NSThread sleepForTimeInterval:1.0];
+//    [NSThread sleepForTimeInterval:1.0];
     //set background image
     [self.window setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"common_bg"]]];
     UIImage *navigationImage = [UIImage imageNamed:@"navbar_bg"];
@@ -28,15 +33,46 @@
     UIImage *barButtonImage = [[UIImage imageNamed:@"button_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
     [[UIBarButtonItem appearance] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], UITextAttributeTextColor,
-                                                           [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],UITextAttributeTextShadowColor,
-                                                           [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
-                                                           UITextAttributeTextShadowOffset,
-                                                           [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0], UITextAttributeFont, nil]];
 
+    NSShadow *shadow = [NSShadow new];
+    [shadow setShadowColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8]];
+    [shadow setShadowOffset:CGSizeMake(0, 1)];
+    
+    NSDictionary *attributes = @{
+                                 NSForegroundColorAttributeName: [UIColor colorWithRed:220.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0],
+                                 NSShadowAttributeName: shadow,
+                                 NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0]
+                                 };
+    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+//    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:attributes forState: UIControlStateNormal];
+    
+    // Or you can use.
+    
+    [[UIBarItem appearance] setTitleTextAttributes:attributes forState: UIControlStateNormal];
     
     [self createCopyOfDatabaseIfNeeded];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[RecipeTableViewController alloc] init]];
+    DEMOLeftMenuViewController *leftMenuViewController = [[DEMOLeftMenuViewController alloc] init];
+   
+    
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
+                                                                    leftMenuViewController:leftMenuViewController
+                                                                   rightMenuViewController:nil];
+    sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
+    sideMenuViewController.menuPreferredStatusBarStyle = 1; // UIStatusBarStyleLightContent
+    sideMenuViewController.delegate = self;
+    sideMenuViewController.contentViewShadowColor = [UIColor blackColor];
+    sideMenuViewController.contentViewShadowOffset = CGSizeMake(0, 0);
+    sideMenuViewController.contentViewShadowOpacity = 0.6;
+    sideMenuViewController.contentViewShadowRadius = 12;
+    sideMenuViewController.contentViewShadowEnabled = YES;
+    self.window.rootViewController = sideMenuViewController;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     
     return YES;
 }

@@ -10,9 +10,13 @@
 #import "RecipeTableViewCell.h"
 #import "RecipeDetailViewController.h"
 #import "FMDatabase.h"
+#import "SearchView.h"
+#import "RESideMenu.h"
+#import "UIViewController+RESideMenu.h"
 
 @interface RecipeTableViewController ()
 
+@property (strong, nonatomic) UIView *searchView;
 @property (strong, nonatomic) NSArray *menu;
 
 @end
@@ -30,6 +34,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Left"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(presentLeftMenuViewController:)];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view setBackgroundColor:[UIColor clearColor]];
     self.navigationItem.title = @"Recipe";
@@ -44,6 +52,25 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.menu = [self getAllData];
+    
+    self.searchView = [[[NSBundle mainBundle] loadNibNamed:@"SearchView"
+                                                     owner:self
+                                                   options:nil] objectAtIndex:0];
+    self.searchView.alpha = 0;
+    self.searchView.frame = CGRectMake(0, 0, self.view.frame.size.width,64);
+    self.navigationController.navigationBarHidden = NO;
+
+    [self.view addSubview:self.searchView];
+}
+- (IBAction)showSearch:(id)sender {
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.searchView.alpha = 1;
+       
+    }];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+   
 }
 
 - (void)didReceiveMemoryWarning {

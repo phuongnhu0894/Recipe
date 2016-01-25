@@ -22,6 +22,10 @@
 		641626A91C3F6A6E00976BB1 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 641626A81C3F6A6E00976BB1 /* libsqlite3.dylib */; };
 		641626B31C3FA50B00976BB1 /* RecipeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 641626B21C3FA50B00976BB1 /* RecipeAppDelegate.m */; };
 		641626B81C3FABBC00976BB1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 641626B71C3FABBC00976BB1 /* main.m */; };
+		6449415E1C51D78D00254D18 /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6449415D1C51D78D00254D18 /* SearchView.m */; };
+		644941601C51D79C00254D18 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6449415F1C51D79C00254D18 /* SearchView.xib */; };
+		644941631C55DD5500254D18 /* DEMOLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644941621C55DD5500254D18 /* DEMOLeftMenuViewController.m */; };
+		644941661C55E07A00254D18 /* DEMOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 644941651C55E07A00254D18 /* DEMOSecondViewController.m */; };
 		6464F41E1C47D708006B8D74 /* RecipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6464F41D1C47D708006B8D74 /* RecipeTableViewController.m */; };
 		64C519BF1C48960A000C27CE /* RecipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C519BD1C48960A000C27CE /* RecipeTableViewCell.m */; };
 		64C519C01C48960A000C27CE /* RecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C519BE1C48960A000C27CE /* RecipeTableViewCell.xib */; };
@@ -69,6 +73,13 @@
 		641626B11C3FA50B00976BB1 /* RecipeAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeAppDelegate.h; sourceTree = "<group>"; };
 		641626B21C3FA50B00976BB1 /* RecipeAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeAppDelegate.m; sourceTree = "<group>"; };
 		641626B71C3FABBC00976BB1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6449415C1C51D78D00254D18 /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchView.h; path = ../SearchView.h; sourceTree = "<group>"; };
+		6449415D1C51D78D00254D18 /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchView.m; path = ../SearchView.m; sourceTree = "<group>"; };
+		6449415F1C51D79C00254D18 /* SearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchView.xib; path = ../SearchView.xib; sourceTree = "<group>"; };
+		644941611C55DD5500254D18 /* DEMOLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOLeftMenuViewController.h; sourceTree = "<group>"; };
+		644941621C55DD5500254D18 /* DEMOLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOLeftMenuViewController.m; sourceTree = "<group>"; };
+		644941641C55E07A00254D18 /* DEMOSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOSecondViewController.h; sourceTree = "<group>"; };
+		644941651C55E07A00254D18 /* DEMOSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOSecondViewController.m; sourceTree = "<group>"; };
 		6464F41C1C47D708006B8D74 /* RecipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeTableViewController.h; sourceTree = SOURCE_ROOT; };
 		6464F41D1C47D708006B8D74 /* RecipeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeTableViewController.m; sourceTree = SOURCE_ROOT; };
 		64C519BC1C48960A000C27CE /* RecipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeTableViewCell.h; sourceTree = SOURCE_ROOT; };
@@ -133,6 +144,8 @@
 		641626631C3F6A0300976BB1 = {
 			isa = PBXGroup;
 			children = (
+				644941641C55E07A00254D18 /* DEMOSecondViewController.h */,
+				644941651C55E07A00254D18 /* DEMOSecondViewController.m */,
 				6416266E1C3F6A0300976BB1 /* Recipe */,
 				641626881C3F6A0300976BB1 /* RecipeTests */,
 				641626931C3F6A0300976BB1 /* RecipeUITests */,
@@ -158,6 +171,8 @@
 				641471311C4C94980084B008 /* recipe.jpg */,
 				6414711E1C4C85650084B008 /* about.jpg */,
 				6414711F1C4C85650084B008 /* about.html */,
+				644941611C55DD5500254D18 /* DEMOLeftMenuViewController.h */,
+				644941621C55DD5500254D18 /* DEMOLeftMenuViewController.m */,
 				641626B11C3FA50B00976BB1 /* RecipeAppDelegate.h */,
 				641626B21C3FA50B00976BB1 /* RecipeAppDelegate.m */,
 				64DC16581C4908310057A78A /* AboutViewController.h */,
@@ -168,6 +183,9 @@
 				64C519BD1C48960A000C27CE /* RecipeTableViewCell.m */,
 				64DC16511C48B2E60057A78A /* RecipeDetailViewController.h */,
 				64DC16521C48B2E60057A78A /* RecipeDetailViewController.m */,
+				6449415F1C51D79C00254D18 /* SearchView.xib */,
+				6449415C1C51D78D00254D18 /* SearchView.h */,
+				6449415D1C51D78D00254D18 /* SearchView.m */,
 				64C519BE1C48960A000C27CE /* RecipeTableViewCell.xib */,
 				641626781C3F6A0300976BB1 /* Main.storyboard */,
 				6416267B1C3F6A0300976BB1 /* Assets.xcassets */,
@@ -315,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644941601C51D79C00254D18 /* SearchView.xib in Resources */,
 				641471211C4C85650084B008 /* about.html in Resources */,
 				641471321C4C94980084B008 /* recipe.jpg in Resources */,
 				641471201C4C85650084B008 /* about.jpg in Resources */,
@@ -394,9 +413,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6449415E1C51D78D00254D18 /* SearchView.m in Sources */,
 				64DC165A1C4908310057A78A /* AboutViewController.m in Sources */,
 				6464F41E1C47D708006B8D74 /* RecipeTableViewController.m in Sources */,
+				644941631C55DD5500254D18 /* DEMOLeftMenuViewController.m in Sources */,
 				641626B81C3FABBC00976BB1 /* main.m in Sources */,
+				644941661C55E07A00254D18 /* DEMOSecondViewController.m in Sources */,
 				641626B31C3FA50B00976BB1 /* RecipeAppDelegate.m in Sources */,
 				64C519BF1C48960A000C27CE /* RecipeTableViewCell.m in Sources */,
 				64DC16531C48B2E60057A78A /* RecipeDetailViewController.m in Sources */,

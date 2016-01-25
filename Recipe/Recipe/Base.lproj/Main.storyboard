@@ -39,7 +39,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QW7-cv-Lap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="619" y="347"/>
+            <point key="canvasLocation" x="709" y="-226"/>
         </scene>
         <!--Recipe Detail View Controller-->
         <scene sceneID="Hpw-8S-yZs">
@@ -174,12 +174,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUL-Vn-sP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="-219"/>
+            <point key="canvasLocation" x="1193" y="-887"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="jrl-DS-1PJ">
+            <objects>
+                <viewController restorationIdentifier="secondViewController" storyboardIdentifier="secondViewController" id="So3-cN-V5R" customClass="DEMOSecondViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2dv-wL-QLB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tl1-HI-PP1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sRQ-AC-Stu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWY-da-3bF">
+                                <rect key="frame" x="139" y="273" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="2B0-w8-bxK"/>
+                                    <constraint firstAttribute="width" constant="42" id="kiW-SS-agb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fWY-da-3bF" firstAttribute="centerY" secondItem="sRQ-AC-Stu" secondAttribute="centerY" id="6Qg-U6-PK5"/>
+                            <constraint firstItem="fWY-da-3bF" firstAttribute="centerX" secondItem="sRQ-AC-Stu" secondAttribute="centerX" id="6eS-sP-ZpI"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DJW-Qx-jT1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-18" y="-1679"/>
         </scene>
         <!--Recipe Table View Controller-->
         <scene sceneID="SIj-kL-cke">
             <objects>
-                <tableViewController id="VgH-v1-xKh" customClass="RecipeTableViewController" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="firstViewController" storyboardIdentifier="firstViewController" id="VgH-v1-xKh" customClass="RecipeTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="f0a-HP-PzV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -196,12 +231,23 @@
                         </prototypes>
                         <sections/>
                     </tableView>
-                    <navigationItem key="navigationItem" id="i4H-oS-tAs"/>
+                    <navigationItem key="navigationItem" id="i4H-oS-tAs">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Le8-YM-HUr">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="s1v-V7-mGH">
+                                <rect key="frame" x="286" y="11" width="18" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="search"/>
+                            </button>
+                            <connections>
+                                <action selector="showSearch:" destination="VgH-v1-xKh" id="u5i-4z-99F"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fk2-O3-1Ws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="640" y="-219"/>
+            <point key="canvasLocation" x="760" y="-892"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="uJB-a7-hIx">
@@ -221,7 +267,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1Q-FY-aBY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-700" y="56"/>
+            <point key="canvasLocation" x="-612" y="-628"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j73-ke-5ce">
@@ -240,7 +286,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VK6-5K-OhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="169" y="-219"/>
+            <point key="canvasLocation" x="233" y="-887"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Us8-Rj-7lk">
@@ -259,10 +305,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rKj-j4-iZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="169" y="442"/>
+            <point key="canvasLocation" x="233" y="-226"/>
         </scene>
     </scenes>
     <resources>
         <image name="photo-frame" width="297" height="199"/>
+        <image name="search" width="18" height="18"/>
     </resources>
 </document>
