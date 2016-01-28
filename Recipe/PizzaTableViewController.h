@@ -1,14 +1,14 @@
 //
-//  DEMOSecondViewController.h
+//  PizzaTableViewController.h
 //  Recipe
 //
-//  Created by Phuong on 1/25/16.
+//  Created by Phuong on 1/26/16.
 //  Copyright © 2016 Appcoda. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-@interface DEMOSecondViewController : UIViewController
+@interface PizzaTableViewController : UITableViewController
 
 @end

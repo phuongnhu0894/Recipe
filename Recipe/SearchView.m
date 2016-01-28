@@ -16,11 +16,9 @@
     
     
 }
+- (IBAction)cancelSelecting:(id)sender {
+    
+}
 
-//- (IBAction)doneSelectingOptions:(id)sender
-//{
-//    [UIView animateWithDuration:0.3 animations:^{
-//        self.alpha = 0;
-//    }];
-//}
+
 @end

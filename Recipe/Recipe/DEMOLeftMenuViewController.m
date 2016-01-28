@@ -8,7 +8,9 @@
 
 #import "DEMOLeftMenuViewController.h"
 #import "RecipeTableViewController.h"
-#import "DEMOSecondViewController.h"
+#import "PastaTableViewController.h"
+#import "PizzaTableViewController.h"
+#import "RisottoTableViewController.h"
 
 @interface DEMOLeftMenuViewController ()
 
@@ -43,16 +45,36 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     switch (indexPath.row) {
         case 0:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[RecipeTableViewController alloc] init]]
+        {
+            UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"tabbarController"];
+            [self.sideMenuViewController setContentViewController:controller
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
+        }
             break;
         case 1:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[DEMOSecondViewController alloc] init]]
+        {
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[PizzaTableViewController alloc] init]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
+        }
+            break;
+        case 2:
+        {
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[PastaTableViewController alloc] init]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+        }
+            break;
+        case 3:
+        {
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[RisottoTableViewController alloc] init]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+        }
             break;
         default:
             break;
@@ -92,7 +114,7 @@
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
     
-    NSArray *titles = @[@"Home", @"Calendar", @"Profile", @"Settings", @"Log Out"];
+    NSArray *titles = @[@"Home", @"Pizza", @"Pasta", @"Risotto", @"Favourite"];
     NSArray *images = @[@"IconHome", @"IconCalendar", @"IconProfile", @"IconSettings", @"IconEmpty"];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];

@@ -1,12 +1,12 @@
 //
-//  RecipeTableViewController.m
+//  PastaTableViewController.m
 //  Recipe
 //
-//  Created by Phuong on 1/14/16.
+//  Created by Phuong on 1/26/16.
 //  Copyright © 2016 Appcoda. All rights reserved.
 //
 
-#import "RecipeTableViewController.h"
+#import "PastaTableViewController.h"
 #import "RecipeTableViewCell.h"
 #import "RecipeDetailViewController.h"
 #import "FMDatabase.h"
@@ -14,91 +14,28 @@
 #import "RESideMenu.h"
 #import "UIViewController+RESideMenu.h"
 
-@interface RecipeTableViewController ()
+@interface PastaTableViewController ()
 
-@property (strong, nonatomic) UIView *searchView;
 @property (strong, nonatomic) NSArray *menu;
 
 @end
 
-@implementation RecipeTableViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@implementation PastaTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithRed:255/255.0 green:202/255.0 blue:101/255.0 alpha:1.0];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Left"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(presentLeftMenuViewController:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"]
-                                                                  style:UIBarButtonItemStylePlain
-                                                                 target:self
-                                                                action:@selector(showSearch:)];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.view setBackgroundColor:[UIColor clearColor]];
-    self.navigationItem.title = @"Recipe";
-    
-    UIEdgeInsets inset = UIEdgeInsetsMake(5, 0, 0, 0);
-    self.tableView.contentInset = inset;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.menu = [self getAllData];
-    self.searchView = [[[NSBundle mainBundle] loadNibNamed:@"SearchView"
-                                                     owner:self
-                                                   options:nil] objectAtIndex:0];
-    self.searchView.frame = CGRectMake(0, -64, self.view.frame.size.width, 64);
-    [[[UIApplication sharedApplication] keyWindow] addSubview:self.searchView];
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self hideSearch];
-    
-    //TODO: hide search bar
-}
-
-
-- (IBAction)showSearch:(id)sender {
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        self.searchView.frame = CGRectMake(0, 0, self.view.frame.size.width, 64);
-       
-    }];
-   
-}
-- (void)hideSearch {
-    self.searchView.frame = CGRectMake(0, 0, self.view.frame.size.width, -64);
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.menu count];
 }
 
 - (NSArray *)getAllData {
@@ -109,7 +46,7 @@
     
     FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
     [database open];
-    NSString *sqlSelectQuery = @"SELECT * FROM Food";
+    NSString *sqlSelectQuery = @"SELECT * FROM Food where category_id like '1'";
     NSMutableArray *menu = [[NSMutableArray alloc] init];
     
     // Query result
@@ -122,7 +59,7 @@
         NSString *strIngredients = [NSString stringWithFormat:@"%@",[resultsWithNameLocation stringForColumn:@"food_ingredients"]];
         
         // loading your data into the array, dictionaries.
-//        NSLog(@"Name = %@, Time = %@, Image = %@, Igredients= %@",strName, strTime, strImage, strIngredients);
+        //        NSLog(@"Name = %@, Time = %@, Image = %@, Igredients= %@",strName, strTime, strImage, strIngredients);
         NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
         data[@"name"] = strName;
         data[@"time"] = strTime;
@@ -137,21 +74,15 @@
     return menu;
 }
 
-- (UIImage *)cellBackgroundForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSInteger rowCount = [self tableView:[self tableView] numberOfRowsInSection:0];
-    NSInteger rowIndex = indexPath.row;
-    UIImage *background = nil;
-    
-    if (rowIndex == 0) {
-        background = [UIImage imageNamed:@"cell_top"];
-    } else if (rowIndex == rowCount - 1) {
-        background = [UIImage imageNamed:@"cell_bottom"];
-    } else {
-        background = [UIImage imageNamed:@"cell_middle"];
-    }
-    
-    return background;
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    return [self.menu count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -159,12 +90,12 @@
     return 70;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier" forIndexPath:indexPath];
-//    NSDictionary *item = [self.menu objectAtIndex:indexPath.row];
-//    cell.textLabel.text = [item objectForKey:@"name"];
-//    cell.detailTextLabel.text = [item objectForKey:@"time"];
-//    cell.imageView.image = [UIImage imageWithContentsOfFile:[item objectForKey:@"image"]];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
     static NSString *CellIdentifier = @"CustomTableCell";
     RecipeTableViewCell *cell = (RecipeTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -173,39 +104,22 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RecipeTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-
+    
     NSDictionary *item = [self.menu objectAtIndex:indexPath.row];
     cell.nameLabel.text = [item objectForKey:@"name"];
     cell.prepTimeLabel.text = [item objectForKey:@"time"];
     cell.thumbnailImageView.image = [UIImage imageWithContentsOfFile:[item objectForKey:@"image"]];
     
     // Assign our own background image for the cell
-    UIImage *background = [self cellBackgroundForRowAtIndexPath:indexPath];
+//    UIImage *background = [self cellBackgroundForRowAtIndexPath:indexPath];
+//    
+//    UIImageView *cellBackgroundView = [[UIImageView alloc] initWithImage:background];
+//    cellBackgroundView.image = background;
+//    cell.backgroundView = cellBackgroundView;
     
-    UIImageView *cellBackgroundView = [[UIImageView alloc] initWithImage:background];
-    cellBackgroundView.image = background;
-    cell.backgroundView = cellBackgroundView;
-
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-    UIStoryboard *storyboardobj = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-      RecipeDetailViewController *recipeDetailViewController = [storyboardobj instantiateViewControllerWithIdentifier:@"RecipeDetailViewController1"];
-//    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    NSDictionary *item = [self.menu objectAtIndex:indexPath.row];
-    recipeDetailViewController.recipeImage = [item objectForKey:@"image"];
-    recipeDetailViewController.recipeTime = [item objectForKey:@"time"];
-    recipeDetailViewController.recipeIngredients = [item objectForKey:@"ingredients"];
-    recipeDetailViewController.recipeName = [item objectForKey:@"name"];
-    [self.navigationController pushViewController:recipeDetailViewController animated:YES];
-    
-    
-    
-    
-}
 
 /*
 // Override to support conditional editing of the table view.
